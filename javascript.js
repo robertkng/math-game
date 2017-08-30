@@ -86,11 +86,19 @@ function generateQA() {
   document.getElementById("box" + correctPosition).innerHTML = correctAnswer;
 
   // fill other boxes with wrong answers
+  var answers = [correctAnswer];
+
   for (i = 1; i < 5; i ++) {
     if (i !== correctPosition) {
-      var wrongAnswer = (1 + Math.round(9*Math.random())) * (1 + Math.round(9*Math.random()));
+      var wrongAnswer;
+      do {
+        wrongAnswer = (1 + Math.round(9*Math.random())) * (1 + Math.round(9*Math.random()));
+      }
+      while(answers.indexOf(wrongAnswer) > -1)
 
       document.getElementById("box" + i).innerHTML = wrongAnswer;
+
+      answers.push(wrongAnswer);
     }
   }
 }
