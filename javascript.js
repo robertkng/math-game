@@ -22,14 +22,22 @@ document.getElementById("startreset").onclick = function () {
     timeremaining = 60;
     document.getElementById("timeremainingvalue").innerHTML = timeremaining;
 
+    // hide gameover box
+    hide("gameover");
+
     // change button to reset
     document.getElementById("startreset").innerHTML = "Reset Game";
 
     // start countdown
     startCountdown();
+
+    // generate question and multiple answers
+    generateQA();
   }
 }
 
+// functions
+// start counter
 function startCountdown() {
   action = setInterval(function() {
     timeremaining -= 1;
@@ -40,18 +48,31 @@ function startCountdown() {
       show("gameover");
       document.getElementById("gameover").innerHTML = "<p>Game Over</p> <p>Your Score is " + score + "</p>";
       hide("timeremaining");
+      hide("correct");
+      hide("wrong");
+      playing = false;
+      document.getElementById("startreset").innerHTML = "Start Game";
     }
-  }, 1000);
+  }, 10);
 }
 
+// stop counter
 function stopCountdown() {
   clearInterval(action);
 }
 
+// hide element
 function hide(Id) {
   document.getElementById(Id).style.display = "none";
 }
 
+// show element
 function show(Id) {
   document.getElementById(Id).style.display = "block";
+}
+
+
+// generate question and multiple answers
+function generateQA() {
+  var x = 1 + Math.round(9*Math.random());
 }
