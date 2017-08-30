@@ -97,6 +97,6 @@ html {
   position: absolute;
   left: 400px;
   top: 385px;
-  visibility: hidden;
-  /*display: none;*/
+  /*visibility: hidden;*/
+  display: none;
 }
