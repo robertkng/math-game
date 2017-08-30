@@ -14,8 +14,8 @@ document.getElementById("startreset").onclick = function () {
     // change mode to playing
     playing = true;
     // if we are not playing, set score to 0
-    // score = 0;
-    score = 1;
+    score = 0;
+    // score = 1;
     document.getElementById("scorevalue").innerHTML = score;
 
     // show countdown box
@@ -37,6 +37,30 @@ document.getElementById("startreset").onclick = function () {
   }
 }
 
+// when answered box is clicked
+document.getElementById("box1").onclick =
+function () {
+// check if we are playing
+if (playing === true) {
+  if(this.innerHTML === correctAnswer) {
+    // increase score by 1 if correct
+    score ++;
+    document.getElementById("scorevalue").innerHTML = score;
+    hide("wrong");
+    show("correct");
+    setTimeout(function(){
+      hide("correct");
+    }, 1000);
+  } else {
+    show("wrong");
+    hide("correct");
+    setTimeout(function(){
+      hide("wrong");
+    }, 1000);
+  }
+}
+}
+
 // functions
 // start counter
 function startCountdown() {
@@ -54,7 +78,7 @@ function startCountdown() {
       playing = false;
       document.getElementById("startreset").innerHTML = "Start Game";
     }
-  }, 10);
+  }, 1000);
 }
 
 // stop counter
@@ -96,7 +120,7 @@ function generateQA() {
       }
       while(answers.indexOf(wrongAnswer) > -1)
 
-      document.getElementById("box" + i).innerHTML = wrongAnswer;
+      document.getElementById("box"+i).innerHTML = wrongAnswer;
 
       answers.push(wrongAnswer);
     }
