@@ -19,6 +19,8 @@ document.getElementById("startreset").onclick = function () {
 
     // show countdown box
     document.getElementById("timeremaining").style.display = "block";
+    timeRemaining = 60;
+    document.getElementById("timeremainingvalue").innerHTML = timeRemaining;
 
     // change button to reset
     document.getElementById("startreset").innerHTML = "Reset Game";
@@ -30,6 +32,18 @@ document.getElementById("startreset").onclick = function () {
 
 function startCountdown() {
   action = setInterval(function() {
-
+    timeRemaining -= 1;
+    document.getElementById("timeremainingvalue").innerHTML = timeRemaining;
+    if(timeRemaining === 0) {
+      // game over
+      stopCountdown();
+      document.getElementById("gameover").style.display = "block";
+      document.getElementById("gameover").innerHTML = "<p>Game Over</p> <p>Your Score is " + score + "</p>";
+      document.getElementById("timeRemaining").style.display = "none";
+    }
   }, 1000);
+}
+
+function stopCountdown() {
+  clearInterval(action);
 }
