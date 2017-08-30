@@ -1,7 +1,7 @@
 var playing = false;
 var score;
 var action;
-var timeRemaining;
+var timeremaining;
 
 // if we click on the start/reset button
 document.getElementById("startreset").onclick = function () {
@@ -18,9 +18,9 @@ document.getElementById("startreset").onclick = function () {
     document.getElementById("scorevalue").innerHTML = score;
 
     // show countdown box
-    document.getElementById("timeremaining").style.display = "block";
-    timeRemaining = 60;
-    document.getElementById("timeremainingvalue").innerHTML = timeRemaining;
+    show("timeremaining");
+    timeremaining = 60;
+    document.getElementById("timeremainingvalue").innerHTML = timeremaining;
 
     // change button to reset
     document.getElementById("startreset").innerHTML = "Reset Game";
@@ -32,18 +32,26 @@ document.getElementById("startreset").onclick = function () {
 
 function startCountdown() {
   action = setInterval(function() {
-    timeRemaining -= 1;
-    document.getElementById("timeremainingvalue").innerHTML = timeRemaining;
-    if(timeRemaining === 0) {
+    timeremaining -= 1;
+    document.getElementById("timeremainingvalue").innerHTML = timeremaining;
+    if(timeremaining === 0) {
       // game over
       stopCountdown();
-      document.getElementById("gameover").style.display = "block";
+      show("gameover");
       document.getElementById("gameover").innerHTML = "<p>Game Over</p> <p>Your Score is " + score + "</p>";
-      document.getElementById("timeRemaining").style.display = "none";
+      hide("timeremaining");
     }
   }, 1000);
 }
 
 function stopCountdown() {
   clearInterval(action);
+}
+
+function hide(Id) {
+  document.getElementById(Id).style.display = "none";
+}
+
+function show(Id) {
+  document.getElementById(Id).style.display = "block";
 }
